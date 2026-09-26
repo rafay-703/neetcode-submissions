@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int characterReplacement(string s, int k) {
+        
+        int ans = 1;
+        int n = s.length();
+        int curr_k =0;
+        unordered_map<int,int> mp;
+        int l =0;
+        int maxf =0;
+        for(int r=0;r<n;r++)
+        {
+            mp[s[r]]++;
+            maxf = max(maxf,mp[s[r]]);
+            while((r-l+1)- maxf > k)
+            {
+                mp[s[l]]--;
+                l++;
+            }
+            ans = max( ans,r-l+1);
+        }
+        return ans;
+
+    }
+};
